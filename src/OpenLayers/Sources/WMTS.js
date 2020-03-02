@@ -67,7 +67,7 @@ var WMTS = (function (WMTSSource) {
             var tmpTileCoord = [0, 0, 0]; /* Note : [z(zoomLevel),x,y] */
             var tmpExtent = olCreateEmpty();
             var x = tileCoord[1];
-            var y = -tileCoord[2] - 1; // FIXME : v6.0.0, on utilise "var y = tileCoord[2];"
+            var y = tileCoord[2]; // FIXME : v6.0.0, on utilise "var y = tileCoord[2];"
             var tileExtent = tileGrid.getTileCoordExtent(tileCoord);
             var projectionExtent = projection.getExtent();
             var extent = projectionExtent;
@@ -88,6 +88,7 @@ var WMTS = (function (WMTSSource) {
 
         var tileExtent = tileGrid.getTileCoordExtent(tileCoord);
         var transformedTileCoord = getTransformedTileCoord(tileCoord, tileGrid, projection);
+        var tileSize = tileGrid.getTileSize(tileCoord[0]);
 
         if (tileGrid.getResolutions().length <= tileCoord[0]) {
             return undefined;
@@ -117,6 +118,9 @@ var WMTS = (function (WMTSSource) {
 
         var x = Math.floor((coordinate[0] - tileExtent[0]) / (tileResolution / pixelRatio));
         var y = Math.floor((tileExtent[3] - coordinate[1]) / (tileResolution / pixelRatio));
+
+        x = Math.min(x, (tileSize[0]|tileSize)-1);
+        y = Math.min(y, (tileSize[1]|tileSize)-1);
 
         baseParams["I"] = x;
         baseParams["J"] = y;

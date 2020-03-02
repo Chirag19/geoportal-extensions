@@ -1,26 +1,4 @@
 {
-   "description" : "French Geoportal Extension for Leaflet",
-   "module" : "src/Leaflet/index.js",
-   "files" : [
-      "dist/",
-      "src/",
-      "LICENCE.md",
-      "README.md",
-      "package.json"
-   ],
-   "devDependencies" : {},
-   "name" : "geoportal-extensions-leaflet",
-   "dependencies" : {
-      "leaflet" : "1.5.1",
-      "loglevel" : "~1.6.1",
-      "sortablejs" : "1.8.4",
-      "leaflet-draw" : "1.0.4",
-      "geoportal-access-lib" : "^2.1.6",
-      "proj4" : "2.5.0",
-      "proj4leaflet" : "~1.0.2"
-   },
-   "date" : "05/12/2019",
-   "directories" : {},
    "keywords" : [
       "geoportail",
       "plugin",
@@ -28,17 +6,39 @@
       "leaflet",
       "publish"
    ],
-   "bugs" : {},
+   "license" : "CECILL-B",
+   "files" : [
+      "dist/",
+      "src/",
+      "LICENCE.md",
+      "README.md",
+      "package.json"
+   ],
+   "main" : "dist/GpPluginLeaflet-src.js",
    "peerDependencies" : {},
    "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-leaflet.html",
+   "date" : "24/01/2020",
+   "version" : "2.1.5",
+   "directories" : {},
+   "module" : "src/Leaflet/index.js",
+   "bugs" : {},
+   "scripts" : {},
+   "dependencies" : {
+      "leaflet-draw" : "1.0.4",
+      "sortablejs" : "1.8.4",
+      "leaflet" : "1.5.1",
+      "proj4" : "2.5.0",
+      "geoportal-access-lib" : "^2.1.6",
+      "loglevel" : "~1.6.1",
+      "proj4leaflet" : "~1.0.2"
+   },
+   "bundleDependencies" : [],
+   "name" : "geoportal-extensions-leaflet",
+   "description" : "French Geoportal Extension for Leaflet",
+   "author" : "IGNF",
+   "devDependencies" : {},
    "repository" : {
       "url" : "https://github.com/IGNF/geoportal-extensions.git",
       "type" : "git"
-   },
-   "main" : "dist/GpPluginLeaflet-src.js",
-   "scripts" : {},
-   "bundleDependencies" : [],
-   "author" : "IGNF",
-   "version" : "2.1.5",
-   "license" : "CECILL-B"
+   }
 }

@@ -855,7 +855,8 @@ var Drawing = (function (Control) {
     Drawing.prototype._createRemoveInteraction = function () {
         var interaction = new SelectInteraction({
             // features : this.layer.getSource().getFeaturesCollection(),
-            layers : [this.layer]
+            layers : [this.layer],
+            style: false
         });
         interaction.on("select", (seEv) => {
             if (!seEv || !seEv.selected || seEv.selected.length === 0) {
@@ -878,7 +879,8 @@ var Drawing = (function (Control) {
      */
     Drawing.prototype._createStylingInteraction = function () {
         var interaction = new SelectInteraction({
-            layers : [this.layer]
+            layers : [this.layer],
+            style: false
         });
         interaction.on("select", (seEv) => {
             // suppression de toute popup existante
@@ -1129,7 +1131,8 @@ var Drawing = (function (Control) {
      */
     Drawing.prototype._createLabelInteraction = function () {
         var interaction = new SelectInteraction({
-            layers : [this.layer]
+            layers : [this.layer],
+            style: false
         });
         interaction.on("select", (seEv) => {
             // suppression de toute popup existante
@@ -1334,6 +1337,7 @@ var Drawing = (function (Control) {
             case this._addUID("drawing-tool-point"):
                 if (context.dtOptions["points"].active) {
                     context.interactionCurrent = new DrawInteraction({
+                        stopClick : true,
                         features : context.layer.getSource().getFeaturesCollection(),
                         style : new Style({
                             image : new Icon(this._getIconStyleOptions(this.options.markersList[0]))
@@ -1350,6 +1354,7 @@ var Drawing = (function (Control) {
             case this._addUID("drawing-tool-line"):
                 if (context.dtOptions["lines"].active) {
                     context.interactionCurrent = new DrawInteraction({
+                        stopClick : true,
                         features : context.layer.getSource().getFeaturesCollection(),
                         style : new Style({
                             image : new Circle({
@@ -1379,6 +1384,7 @@ var Drawing = (function (Control) {
             case this._addUID("drawing-tool-polygon"):
                 if (context.dtOptions["polygons"].active) {
                     context.interactionCurrent = new DrawInteraction({
+                        stopClick : true,
                         features : context.layer.getSource().getFeaturesCollection(),
                         style : new Style({
                             image : new Circle({
@@ -1415,6 +1421,7 @@ var Drawing = (function (Control) {
                 // text : creation de points invisibles avec un label.
                 if (context.dtOptions["text"].active) {
                     context.interactionCurrent = new DrawInteraction({
+                        stopClick : true,
                         features : context.layer.getSource().getFeaturesCollection(),
                         style : new Style({
                             image : new Circle({
@@ -1488,6 +1495,7 @@ var Drawing = (function (Control) {
             case this._addUID("drawing-tool-edit"):
                 if (context.dtOptions["edit"].active) {
                     context.interactionSelectEdit = new SelectInteraction({
+                        stopClick: true,
                         condition : eventSingleClick,
                         layers : [this.layer]
                     });
@@ -1499,6 +1507,7 @@ var Drawing = (function (Control) {
                     map.addInteraction(context.interactionSelectEdit);
 
                     context.interactionCurrent = new ModifyInteraction({
+                        stopClick: true,
                         // features : context.layer.getSource().getFeaturesCollection(),
                         features : this.interactionSelectEdit.getFeatures(),
                         style : new Style({
