@@ -41,7 +41,11 @@
                   })
                 });
 
-                var route = new ol.control.Route({});
+                var route = new ol.control.Route({
+                  routeOptions : {
+                    serverUrl : "http://localhost:8080/simple/1.0.0/route"
+                  }
+                });
                 map.addControl(route);
 
                 var layerSwitcher = new ol.control.LayerSwitcher({});

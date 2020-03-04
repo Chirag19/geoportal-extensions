@@ -49,7 +49,11 @@
 
             layer.addTo(map);
 
-            var route = L.geoportalControl.Route();
+            var route = L.geoportalControl.Route({
+              routeOptions : {
+                  serverUrl : "http://localhost:8080/simple/1.0.0/route"
+                }
+            });
 
             map.addControl(route);
 

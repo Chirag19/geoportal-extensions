@@ -42,7 +42,10 @@
                 });
 
                 var route = new ol.control.Route({
-                    draggable : true
+                    draggable : true,
+                    routeOptions : {
+                    serverUrl : "http://localhost:8080/simple/1.0.0/route"
+                  }
                 });
                 map.addControl(route);
 

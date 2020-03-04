@@ -15,7 +15,7 @@ import {
 } from "ol/style";
 import { transformExtent as olTransformExtentProj } from "ol/proj";
 // import geoportal library access
-import Gp from "geoportal-access-lib";
+import Gp from "../../../dist/GpServices-src.js";
 // import local
 import Logger from "../../Common/Utils/LoggerByDefault";
 import Utils from "../../Common/Utils";
@@ -893,6 +893,7 @@ var Route = (function (Control) {
             graph : routeOptions.graph || this._currentTransport,
             routePreference : routeOptions.routePreference || this._currentComputation,
             exclusions : routeOptions.exclusions || this._currentExclusions,
+            serverUrl : routeOptions.serverUrl || null,
             geometryInInstructions : true,
             distanceUnit : "m",
             timeOut : _timeout,
