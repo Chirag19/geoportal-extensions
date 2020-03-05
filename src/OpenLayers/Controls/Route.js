@@ -15,7 +15,7 @@ import {
 } from "ol/style";
 import { transformExtent as olTransformExtentProj } from "ol/proj";
 // import geoportal library access
-import Gp from "../../../dist/GpServices-src.js";
+import Gp from "geoportal-access-lib";
 // import local
 import Logger from "../../Common/Utils/LoggerByDefault";
 import Utils from "../../Common/Utils";

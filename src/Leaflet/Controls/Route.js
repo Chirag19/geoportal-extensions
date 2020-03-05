@@ -1,4 +1,4 @@
-import Gp from "../../../dist/GpServices-src.js";
+import Gp from "geoportal-access-lib";
 import L from "leaflet";
 import Logger from "../../Common/Utils/LoggerByDefault";
 import RightManagement from "../../Common/Utils/CheckRightManagement";
