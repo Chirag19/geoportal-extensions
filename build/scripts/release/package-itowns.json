@@ -1,12 +1,27 @@
 {
-   "author" : "IGNF",
-   "devDependencies" : {},
    "directories" : {},
-   "description" : "French Geoportal Extensions for iTowns",
-   "scripts" : {},
+   "bugs" : {},
+   "dependencies" : {
+      "itowns" : "2.17.0",
+      "proj4" : "2.5.0",
+      "sortablejs" : "1.8.4",
+      "loglevel" : "~1.6.1",
+      "request" : "^2.83.0",
+      "xmldom" : "^0.1.27",
+      "three.meshline" : "~1.2.0",
+      "geoportal-access-lib" : "^2.1.6",
+      "three" : "^0.111.0"
+   },
    "version" : "2.2.6",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
-   "main" : "dist/GpPluginItowns-src.js",
+   "date" : "24/01/2020",
+   "scripts" : {},
+   "keywords" : [
+      "geoportail",
+      "plugin",
+      "javascript",
+      "Itowns"
+   ],
+   "peerDependencies" : {},
    "files" : [
       "dist/",
       "src/",
@@ -14,32 +29,17 @@
       "README.md",
       "package.json"
    ],
-   "keywords" : [
-      "geoportail",
-      "plugin",
-      "javascript",
-      "Itowns"
-   ],
-   "bundleDependencies" : [],
-   "dependencies" : {
-      "itowns" : "2.17.0",
-      "three.meshline" : "~1.2.0",
-      "sortablejs" : "1.8.4",
-      "xmldom" : "^0.1.27",
-      "request" : "^2.83.0",
-      "three" : "^0.111.0",
-      "proj4" : "2.5.0",
-      "loglevel" : "~1.6.1",
-      "geoportal-access-lib" : "^2.1.6"
+   "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/IGNF/geoportal-extensions.git"
    },
-   "peerDependencies" : {},
-   "bugs" : {},
-   "module" : "src/Itowns/index.js",
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
+   "description" : "French Geoportal Extensions for iTowns",
+   "main" : "dist/GpPluginItowns-src.js",
+   "devDependencies" : {},
+   "bundleDependencies" : [],
    "name" : "geoportal-extensions-itowns",
    "license" : "CECILL-B",
-   "date" : "24/01/2020",
-   "repository" : {
-      "url" : "https://github.com/IGNF/geoportal-extensions.git",
-      "type" : "git"
-   }
+   "author" : "IGNF",
+   "module" : "src/Itowns/index.js"
 }
