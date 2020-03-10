@@ -1,32 +1,6 @@
 {
-   "devDependencies" : {},
-   "author" : "IGNF",
+   "description" : "French Geoportal Extension for Leaflet",
    "version" : "2.1.5",
-   "bugs" : {},
-   "repository" : {
-      "url" : "https://github.com/IGNF/geoportal-extensions.git",
-      "type" : "git"
-   },
-   "module" : "src/Leaflet/index.js",
-   "bundleDependencies" : [],
-   "files" : [
-      "dist/",
-      "src/",
-      "LICENCE.md",
-      "README.md",
-      "package.json"
-   ],
-   "dependencies" : {
-      "leaflet" : "1.5.1",
-      "proj4" : "2.5.0",
-      "leaflet-draw" : "1.0.4",
-      "sortablejs" : "1.8.4",
-      "geoportal-access-lib" : "^2.1.6",
-      "loglevel" : "~1.6.1",
-      "proj4leaflet" : "~1.0.2"
-   },
-   "name" : "geoportal-extensions-leaflet",
-   "directories" : {},
    "keywords" : [
       "geoportail",
       "plugin",
@@ -34,11 +8,37 @@
       "leaflet",
       "publish"
    ],
-   "date" : "24/01/2020",
-   "description" : "French Geoportal Extension for Leaflet",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-leaflet.html",
-   "peerDependencies" : {},
-   "main" : "dist/GpPluginLeaflet-src.js",
+   "scripts" : {},
+   "devDependencies" : {},
+   "module" : "src/Leaflet/index.js",
    "license" : "CECILL-B",
-   "scripts" : {}
+   "bugs" : {},
+   "directories" : {},
+   "repository" : {
+      "url" : "https://github.com/IGNF/geoportal-extensions.git",
+      "type" : "git"
+   },
+   "date" : "24/01/2020",
+   "peerDependencies" : {},
+   "files" : [
+      "dist/",
+      "src/",
+      "LICENCE.md",
+      "README.md",
+      "package.json"
+   ],
+   "name" : "geoportal-extensions-leaflet",
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-leaflet.html",
+   "bundleDependencies" : [],
+   "dependencies" : {
+      "leaflet-draw" : "1.0.4",
+      "loglevel" : "~1.6.1",
+      "geoportal-access-lib" : "^2.1.6",
+      "sortablejs" : "1.8.4",
+      "leaflet" : "1.5.1",
+      "proj4" : "2.5.0",
+      "proj4leaflet" : "~1.0.2"
+   },
+   "main" : "dist/GpPluginLeaflet-src.js",
+   "author" : "IGNF"
 }

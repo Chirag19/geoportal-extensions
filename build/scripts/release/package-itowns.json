@@ -1,36 +1,5 @@
 {
    "module" : "src/Itowns/index.js",
-   "dependencies" : {
-      "request" : "^2.83.0",
-      "three.meshline" : "~1.2.0",
-      "proj4" : "2.5.0",
-      "geoportal-access-lib" : "^2.1.6",
-      "sortablejs" : "1.8.4",
-      "xmldom" : "^0.1.27",
-      "loglevel" : "~1.6.1",
-      "three" : "^0.111.0",
-      "itowns" : "2.17.0"
-   },
-   "version" : "2.2.6",
-   "author" : "IGNF",
-   "license" : "CECILL-B",
-   "directories" : {},
-   "name" : "geoportal-extensions-itowns",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
-   "peerDependencies" : {},
-   "main" : "dist/GpPluginItowns-src.js",
-   "devDependencies" : {},
-   "bundleDependencies" : [],
-   "bugs" : {},
-   "keywords" : [
-      "geoportail",
-      "plugin",
-      "javascript",
-      "Itowns"
-   ],
-   "description" : "French Geoportal Extensions for iTowns",
-   "scripts" : {},
-   "date" : "24/01/2020",
    "files" : [
       "dist/",
       "src/",
@@ -38,8 +7,39 @@
       "README.md",
       "package.json"
    ],
+   "dependencies" : {
+      "three" : "^0.111.0",
+      "xmldom" : "^0.1.27",
+      "request" : "^2.83.0",
+      "proj4" : "2.5.0",
+      "loglevel" : "~1.6.1",
+      "geoportal-access-lib" : "^2.1.6",
+      "itowns" : "2.17.0",
+      "sortablejs" : "1.8.4",
+      "three.meshline" : "~1.2.0"
+   },
+   "keywords" : [
+      "geoportail",
+      "plugin",
+      "javascript",
+      "Itowns"
+   ],
+   "peerDependencies" : {},
+   "scripts" : {},
    "repository" : {
       "type" : "git",
       "url" : "https://github.com/IGNF/geoportal-extensions.git"
-   }
+   },
+   "main" : "dist/GpPluginItowns-src.js",
+   "bundleDependencies" : [],
+   "bugs" : {},
+   "version" : "2.2.6",
+   "license" : "CECILL-B",
+   "author" : "IGNF",
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
+   "devDependencies" : {},
+   "name" : "geoportal-extensions-itowns",
+   "date" : "24/01/2020",
+   "directories" : {},
+   "description" : "French Geoportal Extensions for iTowns"
 }
