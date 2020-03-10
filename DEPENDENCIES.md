@@ -5,11 +5,6 @@
 last
 └── openlayers@5.3.0
 
-* olms
-
-last
-└── "ol-mapbox-style@4.2.1"
-
 * proj4
 
 last

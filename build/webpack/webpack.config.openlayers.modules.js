@@ -260,16 +260,16 @@ module.exports = (env, argv) => {
                         options : "eventbus"
                     }]
                 },
-                {
-                    /** ol-mapbox-style est exposé en global : olms !
-                    * (require.resolve("ol-mapbox-style"))
-                    */
-                    test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
-                    use : [{
-                        loader : "exports-loader",
-                        options : "olms"
-                    }]
-                },
+                // {
+                //     /** ol-mapbox-style est exposé en global : olms !
+                //     * (require.resolve("ol-mapbox-style"))
+                //     */
+                //     test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
+                //     use : [{
+                //         loader : "exports-loader",
+                //         options : "olms"
+                //     }]
+                // },
                 {
                     test : /\.css$/,
                     include : [
@@ -420,13 +420,13 @@ module.exports = (env, argv) => {
                     }),
                     raw : true
                 }),
-                new BannerWebPackPlugin({
-                    banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-olms.tmpl"),"utf8"), {
-                        __VERSION__ : pkg.dependencies["ol-mapbox-style"],
-                    }),
-                    raw : true,
-                    entryOnly : true
-                }),
+                // new BannerWebPackPlugin({
+                //     banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-olms.tmpl"),"utf8"), {
+                //         __VERSION__ : pkg.dependencies["ol-mapbox-style"],
+                //     }),
+                //     raw : true,
+                //     entryOnly : true
+                // }),
                 new BannerWebPackPlugin({
                     banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-ign.tmpl"), "utf8"), {
                         __BRIEF__ : pkg.olExtName,

@@ -33,7 +33,7 @@ import {
     Text
 } from "ol/style";
 // import olms : module ES6
-import { applyStyle as applyStyleOlms } from "ol-mapbox-style";
+// import { applyStyle as applyStyleOlms } from "ol-mapbox-style";
 // import olms : bundle
 // import olms from "ol-mapbox-style";
 // import geoportal library access
@@ -1040,381 +1040,381 @@ var LayerImport = (function (Control) {
         // sauvegarde du content KML/GPX/GeoJSON/MapBox
         this.contentStatic = fileContent;
 
-        if (this._currentImportType === "MAPBOX") {
-            // FIXME
-            // on ne nettoie pas délibérément la liste de résultats de type MapBox
-            // car on souhaite pouvoir interagir sur les couches (editeur).
-            // du coup, à chaque import, on empile les éditeurs.
-            // this.cleanMapBoxResultsList();
+        // if (this._currentImportType === "MAPBOX") {
+        //     // FIXME
+        //     // on ne nettoie pas délibérément la liste de résultats de type MapBox
+        //     // car on souhaite pouvoir interagir sur les couches (editeur).
+        //     // du coup, à chaque import, on empile les éditeurs.
+        //     // this.cleanMapBoxResultsList();
 
-            // contexte
-            var self = this;
+        //     // contexte
+        //     var self = this;
 
-            var _glStyle = this._mapBoxObj = JSON.parse(fileContent);
+        //     var _glStyle = this._mapBoxObj = JSON.parse(fileContent);
 
-            var _glSources = _glStyle.sources;
+        //     var _glSources = _glStyle.sources;
 
-            // multisources ?
-            var _multiSources = (Object.keys(_glSources).length > 1) ? 1 : 0;
+        //     // multisources ?
+        //     var _multiSources = (Object.keys(_glSources).length > 1) ? 1 : 0;
 
-            for (var _glSourceId in _glSources) {
-                if (_glSources.hasOwnProperty(_glSourceId)) {
-                    var _title = "";
-                    var _description = "";
-                    var _quicklookUrl = null;
-                    var _legends = null;
-                    var _metadata = null;
-                    var _originators = null;
+        //     for (var _glSourceId in _glSources) {
+        //         if (_glSources.hasOwnProperty(_glSourceId)) {
+        //             var _title = "";
+        //             var _description = "";
+        //             var _quicklookUrl = null;
+        //             var _legends = null;
+        //             var _metadata = null;
+        //             var _originators = null;
 
-                    // lecture des informations dans le style
-                    // ex. metadata : {
-                    //    geoportail:[title | description | quicklookUrl | legends | originators | metadata]
-                    // }
-                    if (_glStyle.metadata) {
-                        for (var ns in _glStyle.metadata) {
-                            if (_glStyle.metadata.hasOwnProperty(ns)) {
-                                var _keys = ns.split(":");
-                                if (_keys[0] === "geoportail") {
-                                    var key = _keys[1];
-                                    if (key === "title") {
-                                        _title = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                    if (key === "description") {
-                                        _description = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                    if (key === "quicklookUrl") {
-                                        _quicklookUrl = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                    if (key === "legends") {
-                                        _legends = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                    if (key === "metadata") {
-                                        _metadata = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                    if (key === "originators") {
-                                        _originators = _glStyle.metadata[ns];
-                                        continue;
-                                    }
-                                }
-                            }
-                        }
-                    }
+        //             // lecture des informations dans le style
+        //             // ex. metadata : {
+        //             //    geoportail:[title | description | quicklookUrl | legends | originators | metadata]
+        //             // }
+        //             if (_glStyle.metadata) {
+        //                 for (var ns in _glStyle.metadata) {
+        //                     if (_glStyle.metadata.hasOwnProperty(ns)) {
+        //                         var _keys = ns.split(":");
+        //                         if (_keys[0] === "geoportail") {
+        //                             var key = _keys[1];
+        //                             if (key === "title") {
+        //                                 _title = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                             if (key === "description") {
+        //                                 _description = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                             if (key === "quicklookUrl") {
+        //                                 _quicklookUrl = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                             if (key === "legends") {
+        //                                 _legends = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                             if (key === "metadata") {
+        //                                 _metadata = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                             if (key === "originators") {
+        //                                 _originators = _glStyle.metadata[ns];
+        //                                 continue;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
 
-                    // titre par defaut
-                    if (!_title) {
-                        _title = "Couche MapBox";
-                    }
-                    // description par defaut
-                    if (!_description) {
-                        _description = "Couche MapBox";
-                    }
-                    // cas des multisources
-                    _title = (_multiSources) ? _title + "(" + _glSourceId + ")" : _title;
+        //             // titre par defaut
+        //             if (!_title) {
+        //                 _title = "Couche MapBox";
+        //             }
+        //             // description par defaut
+        //             if (!_description) {
+        //                 _description = "Couche MapBox";
+        //             }
+        //             // cas des multisources
+        //             _title = (_multiSources) ? _title + "(" + _glSourceId + ")" : _title;
 
-                    // source mapbox
-                    var _glSource = _glSources[_glSourceId];
+        //             // source mapbox
+        //             var _glSource = _glSources[_glSourceId];
 
-                    // construction de la couche en fonction du type
-                    var _glType = _glSource.type;
+        //             // construction de la couche en fonction du type
+        //             var _glType = _glSource.type;
 
-                    if (_glType === "vector") {
-                        // url du tilejson ou flux mapbox
-                        var _glUrl = _glSource.url;
-                        // url du service tuilé
-                        var _glTiles = _glSource.tiles;
-                        // sprites
-                        var _glSprite = _glStyle.sprite;
+        //             if (_glType === "vector") {
+        //                 // url du tilejson ou flux mapbox
+        //                 var _glUrl = _glSource.url;
+        //                 // url du service tuilé
+        //                 var _glTiles = _glSource.tiles;
+        //                 // sprites
+        //                 var _glSprite = _glStyle.sprite;
 
-                        // FIXME si on a un import par fichier local (this._file),
-                        // - comment passe t on la clef / le token ?
-                        // - comment remplacer un flux mapbox sur une url de service tuilé avec un import local ?
-                        if (_glUrl && _glUrl.indexOf("mapbox://") === 0) {
-                            var _urlService = this._url; // FIXME si fichier local !?
-                            if (_urlService) {
-                                _glTiles = ["a", "b", "c", "d"].map(function (host) {
-                                    var path = _glUrl.replace("mapbox://", "");
-                                    var accessToken = _urlService.split("?")[1];
-                                    return "https://" +
-                                    host + ".tiles.mapbox.com/v4/" +
-                                    path + "/{z}/{x}/{y}.vector.pbf?" +
-                                    accessToken;
-                                });
-                                // conversion des sprites sur un autre scheme que "mapbox://"
-                                if (_glSprite.indexOf("mapbox://") === 0) {
-                                    var s = _urlService.split("?"); // FIXME si fichier local !?
-                                    _glStyle.sprite = s[0] + "/sprite" + "?" + s[1];
-                                }
-                            } else {
-                                logger.warn("Not yet implemented, can't use the local import scheme with a 'mapbox://' in the file.!");
-                            }
-                        }
+        //                 // FIXME si on a un import par fichier local (this._file),
+        //                 // - comment passe t on la clef / le token ?
+        //                 // - comment remplacer un flux mapbox sur une url de service tuilé avec un import local ?
+        //                 if (_glUrl && _glUrl.indexOf("mapbox://") === 0) {
+        //                     var _urlService = this._url; // FIXME si fichier local !?
+        //                     if (_urlService) {
+        //                         _glTiles = ["a", "b", "c", "d"].map(function (host) {
+        //                             var path = _glUrl.replace("mapbox://", "");
+        //                             var accessToken = _urlService.split("?")[1];
+        //                             return "https://" +
+        //                             host + ".tiles.mapbox.com/v4/" +
+        //                             path + "/{z}/{x}/{y}.vector.pbf?" +
+        //                             accessToken;
+        //                         });
+        //                         // conversion des sprites sur un autre scheme que "mapbox://"
+        //                         if (_glSprite.indexOf("mapbox://") === 0) {
+        //                             var s = _urlService.split("?"); // FIXME si fichier local !?
+        //                             _glStyle.sprite = s[0] + "/sprite" + "?" + s[1];
+        //                         }
+        //                     } else {
+        //                         logger.warn("Not yet implemented, can't use the local import scheme with a 'mapbox://' in the file.!");
+        //                     }
+        //                 }
 
-                        if (_glTiles) {
-                            // service tuilé et/ou mapbox
-                            vectorFormat = new MVT({ featureClass : RenderFeature });
-                            vectorSource = new VectorTileSource({
-                                attributions : _glSource.attribution,
-                                format : vectorFormat,
-                                tileGrid : olCreateXYZTileGrid({ // TODO scheme tms ?
-                                    extent : _glSource.bounds, // [minx, miny, maxx, maxy]
-                                    maxZoom : _glSource.maxzoom || 22,
-                                    minZoom : _glSource.minzoom || 1,
-                                    tileSize : _glSource.tileSize || 256
-                                }),
-                                urls : _glTiles
-                            });
-                            vectorSource._title = _title;
-                            vectorSource._description = _description;
-                            vectorSource._quicklookUrl = _quicklookUrl;
-                            vectorSource._metadata = _metadata;
-                            vectorSource._legends = _legends;
-                            vectorSource._originators = _originators;
-                            // waiting
-                            vectorSource.on("tileloadstart", function (e) {
-                                self._loadingContainer.className = "GPmapLoadingVisible";
-                            });
-                            vectorSource.on("tileloadend", function (e) {
-                                self._loadingContainer.className = "";
-                            });
-                            vectorSource.on("tileloaderror", function (e) {
-                                self._loadingContainer.className = "";
-                            });
-                            vectorLayer = new VectorTileLayer({
-                                source : vectorSource,
-                                visible : false,
-                                // zIndex: 0, // FIXME gerer l'ordre sur des multisources ?
-                                declutter : true // TODO utile ?
-                            });
-                            this._mapBoxLayerId = vectorLayer.id = _glSourceId;
-                            vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
-                        } else if (_glUrl) {
-                            // service avec un tilejson
-                            vectorFormat = new MVT({ featureClass : RenderFeature });
-                            vectorLayer = new VectorTileLayer({
-                                visible : false,
-                                // zIndex : 0
-                                declutter : true
-                            });
-                            this._mapBoxLayerId = vectorLayer.id = _glSourceId;
-                            vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
-                            var vectorTileJson = new TileJSONSource({
-                                url : _glUrl
-                            });
-                            // lecture du tilejson avec extension IGN
-                            // les extensions sont enregistrées
-                            // dans les propriétés de la couche : layer.set(mapbox-extension)
-                            // pour une utilisation ulterieur (ex. editeur)
-                            var _key = vectorTileJson.on("change", function () {
-                                if (vectorTileJson.getState() === "ready") {
-                                    var _tileJSONDoc = vectorTileJson.getTileJSON();
+        //                 if (_glTiles) {
+        //                     // service tuilé et/ou mapbox
+        //                     vectorFormat = new MVT({ featureClass : RenderFeature });
+        //                     vectorSource = new VectorTileSource({
+        //                         attributions : _glSource.attribution,
+        //                         format : vectorFormat,
+        //                         tileGrid : olCreateXYZTileGrid({ // TODO scheme tms ?
+        //                             extent : _glSource.bounds, // [minx, miny, maxx, maxy]
+        //                             maxZoom : _glSource.maxzoom || 22,
+        //                             minZoom : _glSource.minzoom || 1,
+        //                             tileSize : _glSource.tileSize || 256
+        //                         }),
+        //                         urls : _glTiles
+        //                     });
+        //                     vectorSource._title = _title;
+        //                     vectorSource._description = _description;
+        //                     vectorSource._quicklookUrl = _quicklookUrl;
+        //                     vectorSource._metadata = _metadata;
+        //                     vectorSource._legends = _legends;
+        //                     vectorSource._originators = _originators;
+        //                     // waiting
+        //                     vectorSource.on("tileloadstart", function (e) {
+        //                         self._loadingContainer.className = "GPmapLoadingVisible";
+        //                     });
+        //                     vectorSource.on("tileloadend", function (e) {
+        //                         self._loadingContainer.className = "";
+        //                     });
+        //                     vectorSource.on("tileloaderror", function (e) {
+        //                         self._loadingContainer.className = "";
+        //                     });
+        //                     vectorLayer = new VectorTileLayer({
+        //                         source : vectorSource,
+        //                         visible : false,
+        //                         // zIndex: 0, // FIXME gerer l'ordre sur des multisources ?
+        //                         declutter : true // TODO utile ?
+        //                     });
+        //                     this._mapBoxLayerId = vectorLayer.id = _glSourceId;
+        //                     vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
+        //                 } else if (_glUrl) {
+        //                     // service avec un tilejson
+        //                     vectorFormat = new MVT({ featureClass : RenderFeature });
+        //                     vectorLayer = new VectorTileLayer({
+        //                         visible : false,
+        //                         // zIndex : 0
+        //                         declutter : true
+        //                     });
+        //                     this._mapBoxLayerId = vectorLayer.id = _glSourceId;
+        //                     vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
+        //                     var vectorTileJson = new TileJSONSource({
+        //                         url : _glUrl
+        //                     });
+        //                     // lecture du tilejson avec extension IGN
+        //                     // les extensions sont enregistrées
+        //                     // dans les propriétés de la couche : layer.set(mapbox-extension)
+        //                     // pour une utilisation ulterieur (ex. editeur)
+        //                     var _key = vectorTileJson.on("change", function () {
+        //                         if (vectorTileJson.getState() === "ready") {
+        //                             var _tileJSONDoc = vectorTileJson.getTileJSON();
 
-                                    var tiles = Array.isArray(_tileJSONDoc.tiles) ? _tileJSONDoc.tiles : [_tileJSONDoc.tiles];
-                                    for (var i = 0; i < tiles.length; i++) {
-                                        var tile = tiles[i];
-                                        if (tile.indexOf("http") !== 0) {
-                                            tiles[i] = _glUrl + tile;
-                                        }
-                                    }
-                                    vectorSource = new VectorTileSource({
-                                        attributions : vectorTileJson.getAttributions() || _tileJSONDoc.attribution,
-                                        format : vectorFormat,
-                                        tileGrid : olCreateXYZTileGrid({
-                                            extent : _glSource.bounds, // [minx, miny, maxx, maxy]
-                                            maxZoom : _tileJSONDoc.maxzoom || _glSource.maxzoom || 22,
-                                            minZoom : _tileJSONDoc.minzoom || _glSource.minzoom || 0,
-                                            tileSize : _tileJSONDoc.tileSize || _glSource.tileSize || 256
-                                        }),
-                                        urls : tiles
-                                    });
-                                    vectorSource._title = _title;
-                                    vectorSource._description = _description;
-                                    vectorSource._quicklookUrl = _quicklookUrl;
-                                    vectorSource._metadata = _metadata;
-                                    vectorSource._legends = _legends;
-                                    vectorSource._originators = _originators;
-                                    // waiting
-                                    vectorSource.on("tileloadstart", function (e) {
-                                        self._loadingContainer.className = "GPmapLoadingVisible";
-                                    });
-                                    vectorSource.on("tileloadend", function (e) {
-                                        self._loadingContainer.className = "";
-                                    });
-                                    vectorLayer.setSource(vectorSource);
-                                    vectorLayer.set("mapbox-extension", _tileJSONDoc["vector_layers"]);
-                                    olObservableUnByKey(_key);
-                                }
-                            });
-                        }
-                    } else if (_glType === "geojson") {
-                        // FIXME
-                        // - cas avec un objet de type features ?
-                        // - cas avec une url relative ?
-                        var _glData = _glSource.data;
+        //                             var tiles = Array.isArray(_tileJSONDoc.tiles) ? _tileJSONDoc.tiles : [_tileJSONDoc.tiles];
+        //                             for (var i = 0; i < tiles.length; i++) {
+        //                                 var tile = tiles[i];
+        //                                 if (tile.indexOf("http") !== 0) {
+        //                                     tiles[i] = _glUrl + tile;
+        //                                 }
+        //                             }
+        //                             vectorSource = new VectorTileSource({
+        //                                 attributions : vectorTileJson.getAttributions() || _tileJSONDoc.attribution,
+        //                                 format : vectorFormat,
+        //                                 tileGrid : olCreateXYZTileGrid({
+        //                                     extent : _glSource.bounds, // [minx, miny, maxx, maxy]
+        //                                     maxZoom : _tileJSONDoc.maxzoom || _glSource.maxzoom || 22,
+        //                                     minZoom : _tileJSONDoc.minzoom || _glSource.minzoom || 0,
+        //                                     tileSize : _tileJSONDoc.tileSize || _glSource.tileSize || 256
+        //                                 }),
+        //                                 urls : tiles
+        //                             });
+        //                             vectorSource._title = _title;
+        //                             vectorSource._description = _description;
+        //                             vectorSource._quicklookUrl = _quicklookUrl;
+        //                             vectorSource._metadata = _metadata;
+        //                             vectorSource._legends = _legends;
+        //                             vectorSource._originators = _originators;
+        //                             // waiting
+        //                             vectorSource.on("tileloadstart", function (e) {
+        //                                 self._loadingContainer.className = "GPmapLoadingVisible";
+        //                             });
+        //                             vectorSource.on("tileloadend", function (e) {
+        //                                 self._loadingContainer.className = "";
+        //                             });
+        //                             vectorLayer.setSource(vectorSource);
+        //                             vectorLayer.set("mapbox-extension", _tileJSONDoc["vector_layers"]);
+        //                             olObservableUnByKey(_key);
+        //                         }
+        //                     });
+        //                 }
+        //             } else if (_glType === "geojson") {
+        //                 // FIXME
+        //                 // - cas avec un objet de type features ?
+        //                 // - cas avec une url relative ?
+        //                 var _glData = _glSource.data;
 
-                        vectorFormat = new GeoJSON();
-                        vectorSource = new VectorTileSource({
-                            attributions : _glSource.attribution,
-                            format : vectorFormat,
-                            url : _glData
-                        });
-                        vectorSource._title = _title;
-                        vectorSource._description = _description;
-                        vectorSource._quicklookUrl = _quicklookUrl;
-                        vectorSource._metadata = _metadata;
-                        vectorSource._legends = _legends;
-                        vectorSource._originators = _originators;
-                        vectorLayer = new VectorTileLayer({
-                            source : vectorSource,
-                            visible : false,
-                            // zIndex: 0, // FIXME gerer l'ordre sur des multisources ?
-                            declutter : true // TODO utile ?
-                        });
-                        this._mapBoxLayerId = vectorLayer.id = _glSourceId;
-                        vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
-                    } else {
-                        logger.warn("Type MapBox format unknown !");
-                        return;
-                    }
+        //                 vectorFormat = new GeoJSON();
+        //                 vectorSource = new VectorTileSource({
+        //                     attributions : _glSource.attribution,
+        //                     format : vectorFormat,
+        //                     url : _glData
+        //                 });
+        //                 vectorSource._title = _title;
+        //                 vectorSource._description = _description;
+        //                 vectorSource._quicklookUrl = _quicklookUrl;
+        //                 vectorSource._metadata = _metadata;
+        //                 vectorSource._legends = _legends;
+        //                 vectorSource._originators = _originators;
+        //                 vectorLayer = new VectorTileLayer({
+        //                     source : vectorSource,
+        //                     visible : false,
+        //                     // zIndex: 0, // FIXME gerer l'ordre sur des multisources ?
+        //                     declutter : true // TODO utile ?
+        //                 });
+        //                 this._mapBoxLayerId = vectorLayer.id = _glSourceId;
+        //                 vectorLayer.gpResultLayerId = "layerimport:" + this._currentImportType;
+        //             } else {
+        //                 logger.warn("Type MapBox format unknown !");
+        //                 return;
+        //             }
 
-                    // parametre à transmettre à la fonction auto-invoquée
-                    var params = {
-                        id : _glSourceId,
-                        styles : _glStyle,
-                        layer : vectorLayer,
-                        options : {
-                            title : layerName || _title,
-                            description : _description,
-                            quicklookUrl : _quicklookUrl,
-                            metadata : _metadata,
-                            legends : _legends,
-                            originators : _originators
-                        }
-                    };
-                    // fonction auto-invoquée
-                    (function (p) {
-                        // TODO ajouter le style de type background !
-                        // fonction de style de la couche
-                        var setStyle = function () {
-                            applyStyleOlms(p.layer, p.styles, p.id)
-                                .then(function () {
-                                    var visibility = true;
-                                    p.layer.setVisible(visibility);
-                                    var opacity = 1;
-                                    p.layer.setOpacity(opacity);
-                                })
-                                .then(function () {
-                                    // gestion du centre sur la carte si center renseigné !
-                                    var projCode = map.getView().getProjection().getCode();
-                                    if (map.getView() && p.styles.center && p.styles.center.length) {
-                                        map.getView().setCenter(olTransformProj(p.styles.center, "EPSG:4326", projCode));
-                                    }
+        //             // parametre à transmettre à la fonction auto-invoquée
+        //             var params = {
+        //                 id : _glSourceId,
+        //                 styles : _glStyle,
+        //                 layer : vectorLayer,
+        //                 options : {
+        //                     title : layerName || _title,
+        //                     description : _description,
+        //                     quicklookUrl : _quicklookUrl,
+        //                     metadata : _metadata,
+        //                     legends : _legends,
+        //                     originators : _originators
+        //                 }
+        //             };
+        //             // fonction auto-invoquée
+        //             (function (p) {
+        //                 // TODO ajouter le style de type background !
+        //                 // fonction de style de la couche
+        //                 var setStyle = function () {
+        //                     applyStyleOlms(p.layer, p.styles, p.id)
+        //                         .then(function () {
+        //                             var visibility = true;
+        //                             p.layer.setVisible(visibility);
+        //                             var opacity = 1;
+        //                             p.layer.setOpacity(opacity);
+        //                         })
+        //                         .then(function () {
+        //                             // gestion du centre sur la carte si center renseigné !
+        //                             var projCode = map.getView().getProjection().getCode();
+        //                             if (map.getView() && p.styles.center && p.styles.center.length) {
+        //                                 map.getView().setCenter(olTransformProj(p.styles.center, "EPSG:4326", projCode));
+        //                             }
 
-                                    // gestion du zoom sur la carte si zoom renseigné !
-                                    if (map.getView() && (p.styles.zoom || p.styles.zoom === 0)) {
-                                        map.getView().setZoom(p.styles.zoom);
-                                    }
+        //                             // gestion du zoom sur la carte si zoom renseigné !
+        //                             if (map.getView() && (p.styles.zoom || p.styles.zoom === 0)) {
+        //                                 map.getView().setZoom(p.styles.zoom);
+        //                             }
 
-                                    // zoom sur l'étendue des entités récupérées (si possible)
-                                    var source = p.layer.getSource();
-                                    if (map.getView() && map.getSize() && source.getExtent) {
-                                        var sourceExtent = source.getExtent();
-                                        if (sourceExtent && sourceExtent[0] !== Infinity) {
-                                            map.getView().fit(source.getExtent(), map.getSize());
-                                        }
-                                    }
-                                })
-                                .then(function () {})
-                                .catch(function (e) {
-                                    logger.error(e);
-                                });
-                        };
+        //                             // zoom sur l'étendue des entités récupérées (si possible)
+        //                             var source = p.layer.getSource();
+        //                             if (map.getView() && map.getSize() && source.getExtent) {
+        //                                 var sourceExtent = source.getExtent();
+        //                                 if (sourceExtent && sourceExtent[0] !== Infinity) {
+        //                                     map.getView().fit(source.getExtent(), map.getSize());
+        //                                 }
+        //                             }
+        //                         })
+        //                         .then(function () {})
+        //                         .catch(function (e) {
+        //                             logger.error(e);
+        //                         });
+        //                 };
 
-                        // etat des layers en cours
-                        logger.warn(p.layer);
+        //                 // etat des layers en cours
+        //                 logger.warn(p.layer);
 
-                        // ajout des styles dans la carte pour une utilisation
-                        // eventuelle (ex. editeur)
-                        // > map.set("mapbox-styles")
-                        var _allStyles = map.get("mapbox-styles") || {};
-                        _allStyles[p.id] = p.styles;
-                        map.set("mapbox-styles", _allStyles);
+        //                 // ajout des styles dans la carte pour une utilisation
+        //                 // eventuelle (ex. editeur)
+        //                 // > map.set("mapbox-styles")
+        //                 var _allStyles = map.get("mapbox-styles") || {};
+        //                 _allStyles[p.id] = p.styles;
+        //                 map.set("mapbox-styles", _allStyles);
 
-                        // ajout des differents styles de la couche
-                        // pour une utilisation eventuelle (ex. editeur)
-                        // > layer.set("mapbox-styles")
-                        var _styles = [];
-                        var _glLayers = p.styles.layers;
-                        for (var ii = 0; ii < _glLayers.length; ii++) {
-                            var _glLayer = _glLayers[ii];
-                            if (_glLayer.source === p.id) {
-                                _styles.push(_glLayer);
-                                continue;
-                            }
-                        }
-                        p.layer.set("mapbox-styles", _styles);
+        //                 // ajout des differents styles de la couche
+        //                 // pour une utilisation eventuelle (ex. editeur)
+        //                 // > layer.set("mapbox-styles")
+        //                 var _styles = [];
+        //                 var _glLayers = p.styles.layers;
+        //                 for (var ii = 0; ii < _glLayers.length; ii++) {
+        //                     var _glLayer = _glLayers[ii];
+        //                     if (_glLayer.source === p.id) {
+        //                         _styles.push(_glLayer);
+        //                         continue;
+        //                     }
+        //                 }
+        //                 p.layer.set("mapbox-styles", _styles);
 
-                        // ajout du layer sur la carte
-                        map.addLayer(p.layer);
+        //                 // ajout du layer sur la carte
+        //                 map.addLayer(p.layer);
 
-                        // application du style
-                        if (p.layer.getSource()) {
-                            setStyle();
-                        } else {
-                            p.layer.once("change:source", setStyle);
-                        }
+        //                 // application du style
+        //                 if (p.layer.getSource()) {
+        //                     setStyle();
+        //                 } else {
+        //                     p.layer.once("change:source", setStyle);
+        //                 }
 
-                        // maj du gestionnaire de couche
-                        map.getControls().forEach(
-                            (control) => {
-                                if (control instanceof LayerSwitcher) {
-                                    control.addLayer(
-                                        p.layer,
-                                        p.options
-                                    );
-                                }
-                            }
-                        );
-                    })(params);
-                }
-            }
+        //                 // maj du gestionnaire de couche
+        //                 map.getControls().forEach(
+        //                     (control) => {
+        //                         if (control instanceof LayerSwitcher) {
+        //                             control.addLayer(
+        //                                 p.layer,
+        //                                 p.options
+        //                             );
+        //                         }
+        //                     }
+        //                 );
+        //             })(params);
+        //         }
+        //     }
 
-            // affichage du panneau des couches accessibles à l'edition
-            this._importPanel.style.display = "none";
-            this._mapBoxPanel.style.display = "block";
+        //     // affichage du panneau des couches accessibles à l'edition
+        //     this._importPanel.style.display = "none";
+        //     this._mapBoxPanel.style.display = "block";
 
-            // editeur de styles
-            this.editor = new Editor({
-                target : this._mapBoxResultsListContainer,
-                style : this._mapBoxObj,
-                scope : this,
-                events : {
-                    "editor:layer:onclickvisibility" : this._onChangeVisibilitySourceMapBox,
-                    "editor:style:scale:onchangemin" : this._onChangeScaleMinSourceMapBox,
-                    "editor:style:scale:onchangemax" : this._onChangeScaleMaxSourceMapBox,
-                    "editor:legend:onchangevalue" : this._onChangeLegendValueSourceMapBox
-                },
-                tools : {
-                    themes : false,
-                    layers : true,
-                    style : this.options.vectorStyleOptions.MapBox.tools.style,
-                    filter : this.options.vectorStyleOptions.MapBox.tools.filter,
-                    legend : true,
-                    group : false
-                }
-            });
+        //     // editeur de styles
+        //     this.editor = new Editor({
+        //         target : this._mapBoxResultsListContainer,
+        //         style : this._mapBoxObj,
+        //         scope : this,
+        //         events : {
+        //             "editor:layer:onclickvisibility" : this._onChangeVisibilitySourceMapBox,
+        //             "editor:style:scale:onchangemin" : this._onChangeScaleMinSourceMapBox,
+        //             "editor:style:scale:onchangemax" : this._onChangeScaleMaxSourceMapBox,
+        //             "editor:legend:onchangevalue" : this._onChangeLegendValueSourceMapBox
+        //         },
+        //         tools : {
+        //             themes : false,
+        //             layers : true,
+        //             style : this.options.vectorStyleOptions.MapBox.tools.style,
+        //             filter : this.options.vectorStyleOptions.MapBox.tools.filter,
+        //             legend : true,
+        //             group : false
+        //         }
+        //     });
 
-            // TODO style par defaut au cas où l'application du style échoue !
-            // FIXME bug avec le geojson, très bizarre !?
-            //      Si on desactive l'editeur, OK
-            //      Sinon NOK !?
-            // FIXME event sur la suppression de la couche afin de fermer le panneau !
-            // TODO au niveau de la couche : minResolution et maxResolution
-        } else {
+        //     // TODO style par defaut au cas où l'application du style échoue !
+        //     // FIXME bug avec le geojson, très bizarre !?
+        //     //      Si on desactive l'editeur, OK
+        //     //      Sinon NOK !?
+        //     // FIXME event sur la suppression de la couche afin de fermer le panneau !
+        //     // TODO au niveau de la couche : minResolution et maxResolution
+        // } else {
             if (this._currentImportType === "KML") {
                 // lecture du fichier KML : création d'un format ol.format.KML, qui possède une méthode readFeatures (et readProjection)
                 vectorFormat = new KMLExtended({
@@ -1490,7 +1490,7 @@ var LayerImport = (function (Control) {
                     map.getView().fit(vectorSource.getExtent(), map.getSize());
                 }
             }
-        }
+        // }
     };
 
     /**
@@ -1601,35 +1601,35 @@ var LayerImport = (function (Control) {
      * @private
      */
     LayerImport.prototype._onChangeVisibilitySourceMapBox = function (e) {
-        var data = e.target.data.obj;
-        var target = e.target.srcElement;
+        // var data = e.target.data.obj;
+        // var target = e.target.srcElement;
 
-        var map = this.getMap();
-        map.getLayers().forEach((layer) => {
-            // logger.trace(layer);
-            if (layer.get("mapbox-source") === data.source) {
-                // reload style with new param : layout.visibility : "visible" or "none"...
-                var layers = this._mapBoxObj.layers;
-                for (var i = 0; i < layers.length; i++) {
-                    if (layers[i].id === data.id) {
-                        var layout = layers[i].layout;
-                        if (layout) {
-                            layout.visibility = (target.checked) ? "visible" : "none";
-                        } else {
-                            layers[i].layout = {
-                                "visibility" : (target.checked) ? "visible" : "none"
-                            };
-                        }
-                        break;
-                    }
-                }
-                applyStyleOlms(layer, this._mapBoxObj, data.source)
-                    .then(function () {})
-                    .catch(function (error) {
-                        logger.error(error);
-                    });
-            }
-        });
+        // var map = this.getMap();
+        // map.getLayers().forEach((layer) => {
+        //     // logger.trace(layer);
+        //     if (layer.get("mapbox-source") === data.source) {
+        //         // reload style with new param : layout.visibility : "visible" or "none"...
+        //         var layers = this._mapBoxObj.layers;
+        //         for (var i = 0; i < layers.length; i++) {
+        //             if (layers[i].id === data.id) {
+        //                 var layout = layers[i].layout;
+        //                 if (layout) {
+        //                     layout.visibility = (target.checked) ? "visible" : "none";
+        //                 } else {
+        //                     layers[i].layout = {
+        //                         "visibility" : (target.checked) ? "visible" : "none"
+        //                     };
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //         applyStyleOlms(layer, this._mapBoxObj, data.source)
+        //             .then(function () {})
+        //             .catch(function (error) {
+        //                 logger.error(error);
+        //             });
+        //     }
+        // });
     };
 
     /**
@@ -1640,29 +1640,29 @@ var LayerImport = (function (Control) {
      * @private
      */
     LayerImport.prototype._onChangeScaleMinSourceMapBox = function (e) {
-        var data = e.target.data.obj;
-        var target = e.target.srcElement;
+        // var data = e.target.data.obj;
+        // var target = e.target.srcElement;
 
-        var map = this.getMap();
-        map.getLayers().forEach((layer) => {
-            // logger.trace(layer);
-            if (layer.get("mapbox-source") === data.source) {
-                // reload style with new param : minZoom = ...
-                var layers = this._mapBoxObj.layers;
-                for (var i = 0; i < layers.length; i++) {
-                    if (layers[i].id === data.id) {
-                        layers[i].minzoom = target.value;
-                        target.title = target.value;
-                        break;
-                    }
-                }
-                applyStyleOlms(layer, this._mapBoxObj, data.source)
-                    .then(function () {})
-                    .catch(function (error) {
-                        logger.error(error);
-                    });
-            }
-        });
+        // var map = this.getMap();
+        // map.getLayers().forEach((layer) => {
+        //     // logger.trace(layer);
+        //     if (layer.get("mapbox-source") === data.source) {
+        //         // reload style with new param : minZoom = ...
+        //         var layers = this._mapBoxObj.layers;
+        //         for (var i = 0; i < layers.length; i++) {
+        //             if (layers[i].id === data.id) {
+        //                 layers[i].minzoom = target.value;
+        //                 target.title = target.value;
+        //                 break;
+        //             }
+        //         }
+        //         applyStyleOlms(layer, this._mapBoxObj, data.source)
+        //             .then(function () {})
+        //             .catch(function (error) {
+        //                 logger.error(error);
+        //             });
+        //     }
+        // });
     };
 
     /**
@@ -1673,29 +1673,29 @@ var LayerImport = (function (Control) {
      * @private
      */
     LayerImport.prototype._onChangeScaleMaxSourceMapBox = function (e) {
-        var data = e.target.data.obj;
-        var target = e.target.srcElement;
+        // var data = e.target.data.obj;
+        // var target = e.target.srcElement;
 
-        var map = this.getMap();
-        map.getLayers().forEach((layer) => {
-            // logger.trace(layer);
-            if (layer.get("mapbox-source") === data.source) {
-                // reload style with new param : minZoom = ...
-                var layers = this._mapBoxObj.layers;
-                for (var i = 0; i < layers.length; i++) {
-                    if (layers[i].id === data.id) {
-                        layers[i].maxzoom = target.value;
-                        target.title = target.value;
-                        break;
-                    }
-                }
-                applyStyleOlms(layer, this._mapBoxObj, data.source)
-                    .then(function () {})
-                    .catch(function (error) {
-                        logger.error(error);
-                    });
-            }
-        });
+        // var map = this.getMap();
+        // map.getLayers().forEach((layer) => {
+        //     // logger.trace(layer);
+        //     if (layer.get("mapbox-source") === data.source) {
+        //         // reload style with new param : minZoom = ...
+        //         var layers = this._mapBoxObj.layers;
+        //         for (var i = 0; i < layers.length; i++) {
+        //             if (layers[i].id === data.id) {
+        //                 layers[i].maxzoom = target.value;
+        //                 target.title = target.value;
+        //                 break;
+        //             }
+        //         }
+        //         applyStyleOlms(layer, this._mapBoxObj, data.source)
+        //             .then(function () {})
+        //             .catch(function (error) {
+        //                 logger.error(error);
+        //             });
+        //     }
+        // });
     };
 
     /**
@@ -1706,31 +1706,31 @@ var LayerImport = (function (Control) {
      * @private
      */
     LayerImport.prototype._onChangeLegendValueSourceMapBox = function (e) {
-        var data = e.target.data.obj;
-        var target = e.target.srcElement;
+        // var data = e.target.data.obj;
+        // var target = e.target.srcElement;
 
-        var map = this.getMap();
-        map.getLayers().forEach((layer) => {
-            // logger.trace(layer);
-            if (layer.get("mapbox-source") === data.source) {
-                // reload style with new param :
-                var layers = this._mapBoxObj.layers;
-                for (var i = 0; i < layers.length; i++) {
-                    if (layers[i].id === data.id) {
-                        var paint = layers[i].paint;
-                        if (paint) {
-                            paint[target.id] = target.value;
-                        }
-                        break;
-                    }
-                }
-                applyStyleOlms(layer, this._mapBoxObj, data.source)
-                    .then(function () {})
-                    .catch(function (error) {
-                        logger.error(error);
-                    });
-            }
-        });
+        // var map = this.getMap();
+        // map.getLayers().forEach((layer) => {
+        //     // logger.trace(layer);
+        //     if (layer.get("mapbox-source") === data.source) {
+        //         // reload style with new param :
+        //         var layers = this._mapBoxObj.layers;
+        //         for (var i = 0; i < layers.length; i++) {
+        //             if (layers[i].id === data.id) {
+        //                 var paint = layers[i].paint;
+        //                 if (paint) {
+        //                     paint[target.id] = target.value;
+        //                 }
+        //                 break;
+        //             }
+        //         }
+        //         applyStyleOlms(layer, this._mapBoxObj, data.source)
+        //             .then(function () {})
+        //             .catch(function (error) {
+        //                 logger.error(error);
+        //             });
+        //     }
+        // });
     };
 
     // ################################################################### //

@@ -218,23 +218,23 @@ module.exports = (env, argv) => {
                         }
                     }
                 },
-                {
-                    /**
-                    * Compatibilité IE du module olms ...
-                    */
-                    test : /\.js$/,
-                    include : [
-                        /node_modules\/ol-mapbox-style/,
-                        /node_modules\/@mapbox\/mapbox-gl-style-spec/
-                    ],
-                    use : {
-                        loader : "babel-loader",
-                        options : {
-                            presets : ["@babel/preset-env"],
-                            plugins : ["@babel/plugin-transform-template-literals"]
-                        }
-                    }
-                },
+                // {
+                //     /**
+                //     * Compatibilité IE du module olms ...
+                //     */
+                //     test : /\.js$/,
+                //     include : [
+                //         /node_modules\/ol-mapbox-style/,
+                //         /node_modules\/@mapbox\/mapbox-gl-style-spec/
+                //     ],
+                //     use : {
+                //         loader : "babel-loader",
+                //         options : {
+                //             presets : ["@babel/preset-env"],
+                //             plugins : ["@babel/plugin-transform-template-literals"]
+                //         }
+                //     }
+                // },
                 {
                     /**
                     * controle des JS en mode warning.
@@ -295,27 +295,27 @@ module.exports = (env, argv) => {
                         options : "eventbus"
                     }]
                 },
-                {
-                    /**
-                    * ol-mapbox-style est exposé en global : olms !
-                    *
-                    * > package.json::main = node_modules/ol-mapbox-style/index.js (par defaut)
-                    *   c'est un module..., donc pas besoin du loader.
-                    *   mais exception à l'utilisation :
-                    *   <TypeError: Cannot read property 'CLEAR'>
-                    *   car ol n'expose pas en mode web la fonctionnalité suivante :
-                    *       ol.events.EventType !?
-                    *   ce module ne fonctionne que si ol est en module ES6 !?
-                    *
-                    * > on pointe sur le bundle minifié, et on l'exporte comme un module
-                    *   test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
-                    */
-                    test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
-                    use : [{
-                        loader : "exports-loader",
-                        options : "olms"
-                    }]
-                },
+                // {
+                //     /**
+                //     * ol-mapbox-style est exposé en global : olms !
+                //     *
+                //     * > package.json::main = node_modules/ol-mapbox-style/index.js (par defaut)
+                //     *   c'est un module..., donc pas besoin du loader.
+                //     *   mais exception à l'utilisation :
+                //     *   <TypeError: Cannot read property 'CLEAR'>
+                //     *   car ol n'expose pas en mode web la fonctionnalité suivante :
+                //     *       ol.events.EventType !?
+                //     *   ce module ne fonctionne que si ol est en module ES6 !?
+                //     *
+                //     * > on pointe sur le bundle minifié, et on l'exporte comme un module
+                //     *   test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
+                //     */
+                //     test : /node_modules\/ol-mapbox-style\/dist\/olms\.js$/,
+                //     use : [{
+                //         loader : "exports-loader",
+                //         options : "olms"
+                //     }]
+                // },
                 {
                     /**
                     * controle et extraction des CSS.
@@ -478,13 +478,13 @@ module.exports = (env, argv) => {
                     }),
                     raw : true
                 }),
-                new BannerWebPackPlugin({
-                    banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-olms.tmpl"),"utf8"), {
-                        __VERSION__ : pkg.dependencies["ol-mapbox-style"],
-                    }),
-                    raw : true,
-                    entryOnly : true
-                }),
+                // new BannerWebPackPlugin({
+                //     banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-olms.tmpl"),"utf8"), {
+                //         __VERSION__ : pkg.dependencies["ol-mapbox-style"],
+                //     }),
+                //     raw : true,
+                //     entryOnly : true
+                // }),
                 new BannerWebPackPlugin({
                     banner : header(fs.readFileSync(path.join(ROOT, "build/licences", "licence-ign.tmpl"), "utf8"), {
                         __BRIEF__ : pkg.olExtName,
