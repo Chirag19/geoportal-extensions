@@ -1,21 +1,20 @@
 {
-   "scripts" : {},
-   "description" : "French Geoportal Extensions for OpenLayers",
-   "name" : "geoportal-extensions-openlayers",
-   "module" : "src/OpenLayers/index.js",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-openlayers.html",
-   "main" : "dist/GpPluginOpenLayers-src.js",
-   "keywords" : [
-      "geoportail",
-      "plugin",
-      "javascript",
-      "OpenLayers"
-   ],
-   "version" : "3.0.7",
-   "bundleDependencies" : [],
-   "peerDependencies" : {},
-   "date" : "24/01/2020",
+   "license" : "CECILL-B",
+   "devDependencies" : {},
    "bugs" : {},
+   "bundleDependencies" : [],
+   "module" : "src/OpenLayers/index.js",
+   "name" : "geoportal-extensions-openlayers",
+   "dependencies" : {
+      "ol" : "6.1.0",
+      "loglevel" : "~1.6.1",
+      "geoportal-access-lib" : "^2.1.6",
+      "xmldom" : "^0.1.27",
+      "sortablejs" : "1.8.4",
+      "request" : "^2.83.0",
+      "eventbusjs" : "^0.2.0",
+      "proj4" : "2.5.0"
+   },
    "files" : [
       "dist/",
       "src/",
@@ -23,22 +22,23 @@
       "README.md",
       "package.json"
    ],
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-openlayers.html",
+   "keywords" : [
+      "geoportail",
+      "plugin",
+      "javascript",
+      "OpenLayers"
+   ],
+   "description" : "French Geoportal Extensions for OpenLayers",
+   "peerDependencies" : {},
+   "scripts" : {},
+   "date" : "24/01/2020",
+   "main" : "dist/GpPluginOpenLayers-src.js",
+   "version" : "3.0.7",
    "author" : "IGNF",
-   "dependencies" : {
-      "request" : "^2.83.0",
-      "loglevel" : "~1.6.1",
-      "eventbusjs" : "^0.2.0",
-      "proj4" : "2.5.0",
-      "xmldom" : "^0.1.27",
-      "ol" : "6.0.0",
-      "geoportal-access-lib" : "^2.1.6",
-      "sortablejs" : "1.8.4"
-   },
-   "devDependencies" : {},
    "directories" : {},
    "repository" : {
-      "type" : "git",
-      "url" : "https://github.com/IGNF/geoportal-extensions.git"
-   },
-   "license" : "CECILL-B"
+      "url" : "https://github.com/IGNF/geoportal-extensions.git",
+      "type" : "git"
+   }
 }
