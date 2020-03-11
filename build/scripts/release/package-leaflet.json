@@ -1,25 +1,6 @@
 {
-   "description" : "French Geoportal Extension for Leaflet",
-   "version" : "2.1.5",
-   "keywords" : [
-      "geoportail",
-      "plugin",
-      "javascript",
-      "leaflet",
-      "publish"
-   ],
-   "scripts" : {},
-   "devDependencies" : {},
-   "module" : "src/Leaflet/index.js",
-   "license" : "CECILL-B",
-   "bugs" : {},
-   "directories" : {},
-   "repository" : {
-      "url" : "https://github.com/IGNF/geoportal-extensions.git",
-      "type" : "git"
-   },
    "date" : "24/01/2020",
-   "peerDependencies" : {},
+   "license" : "CECILL-B",
    "files" : [
       "dist/",
       "src/",
@@ -27,18 +8,37 @@
       "README.md",
       "package.json"
    ],
-   "name" : "geoportal-extensions-leaflet",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-leaflet.html",
+   "keywords" : [
+      "geoportail",
+      "plugin",
+      "javascript",
+      "leaflet",
+      "publish"
+   ],
    "bundleDependencies" : [],
-   "dependencies" : {
-      "leaflet-draw" : "1.0.4",
-      "loglevel" : "~1.6.1",
-      "geoportal-access-lib" : "^2.1.6",
-      "sortablejs" : "1.8.4",
-      "leaflet" : "1.5.1",
-      "proj4" : "2.5.0",
-      "proj4leaflet" : "~1.0.2"
-   },
+   "bugs" : {},
+   "directories" : {},
+   "description" : "French Geoportal Extension for Leaflet",
    "main" : "dist/GpPluginLeaflet-src.js",
-   "author" : "IGNF"
+   "devDependencies" : {},
+   "module" : "src/Leaflet/index.js",
+   "dependencies" : {
+      "loglevel" : "~1.6.1",
+      "proj4" : "2.5.0",
+      "proj4leaflet" : "~1.0.2",
+      "geoportal-access-lib" : "^2.1.6",
+      "leaflet" : "1.5.1",
+      "sortablejs" : "1.8.4",
+      "leaflet-draw" : "1.0.4"
+   },
+   "author" : "IGNF",
+   "scripts" : {},
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-leaflet.html",
+   "peerDependencies" : {},
+   "version" : "2.1.5",
+   "repository" : {
+      "url" : "https://github.com/IGNF/geoportal-extensions.git",
+      "type" : "git"
+   },
+   "name" : "geoportal-extensions-leaflet"
 }
