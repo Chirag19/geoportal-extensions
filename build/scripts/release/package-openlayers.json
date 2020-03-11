@@ -1,27 +1,21 @@
 {
-   "author" : "IGNF",
-   "peerDependencies" : {},
-   "dependencies" : {
-      "proj4" : "2.5.0",
-      "geoportal-access-lib" : "^2.1.6",
-      "loglevel" : "~1.6.1",
-      "xmldom" : "^0.1.27",
-      "eventbusjs" : "^0.2.0",
-      "sortablejs" : "1.8.4",
-      "request" : "^2.83.0",
-      "ol" : "5.3.3"
-   },
+   "scripts" : {},
+   "description" : "French Geoportal Extensions for OpenLayers",
+   "name" : "geoportal-extensions-openlayers",
+   "module" : "src/OpenLayers/index.js",
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-openlayers.html",
+   "main" : "dist/GpPluginOpenLayers-src.js",
    "keywords" : [
       "geoportail",
       "plugin",
       "javascript",
       "OpenLayers"
    ],
-   "license" : "CECILL-B",
-   "main" : "dist/GpPluginOpenLayers-src.js",
+   "version" : "3.0.7",
+   "bundleDependencies" : [],
+   "peerDependencies" : {},
    "date" : "24/01/2020",
-   "scripts" : {},
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-openlayers.html",
+   "bugs" : {},
    "files" : [
       "dist/",
       "src/",
@@ -29,16 +23,22 @@
       "README.md",
       "package.json"
    ],
-   "version" : "3.0.7",
-   "module" : "src/OpenLayers/index.js",
-   "name" : "geoportal-extensions-openlayers",
-   "directories" : {},
-   "description" : "French Geoportal Extensions for OpenLayers",
-   "devDependencies" : {},
-   "bugs" : {},
-   "repository" : {
-      "url" : "https://github.com/IGNF/geoportal-extensions.git",
-      "type" : "git"
+   "author" : "IGNF",
+   "dependencies" : {
+      "request" : "^2.83.0",
+      "loglevel" : "~1.6.1",
+      "eventbusjs" : "^0.2.0",
+      "proj4" : "2.5.0",
+      "xmldom" : "^0.1.27",
+      "ol" : "6.0.0",
+      "geoportal-access-lib" : "^2.1.6",
+      "sortablejs" : "1.8.4"
    },
-   "bundleDependencies" : []
+   "devDependencies" : {},
+   "directories" : {},
+   "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/IGNF/geoportal-extensions.git"
+   },
+   "license" : "CECILL-B"
 }

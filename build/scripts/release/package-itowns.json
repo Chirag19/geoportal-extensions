@@ -1,6 +1,23 @@
 {
-   "version" : "2.2.6",
-   "bundleDependencies" : [],
+   "name" : "geoportal-extensions-itowns",
+   "keywords" : [
+      "geoportail",
+      "plugin",
+      "javascript",
+      "Itowns"
+   ],
+   "dependencies" : {
+      "loglevel" : "~1.6.1",
+      "request" : "^2.83.0",
+      "three" : "^0.111.0",
+      "xmldom" : "^0.1.27",
+      "proj4" : "2.5.0",
+      "geoportal-access-lib" : "^2.1.6",
+      "three.meshline" : "~1.2.0",
+      "itowns" : "2.17.0",
+      "sortablejs" : "1.8.4"
+   },
+   "author" : "IGNF",
    "files" : [
       "dist/",
       "src/",
@@ -8,38 +25,21 @@
       "README.md",
       "package.json"
    ],
-   "main" : "dist/GpPluginItowns-src.js",
-   "dependencies" : {
-      "three.meshline" : "~1.2.0",
-      "geoportal-access-lib" : "^2.1.6",
-      "loglevel" : "~1.6.1",
-      "request" : "^2.83.0",
-      "three" : "^0.111.0",
-      "itowns" : "2.17.0",
-      "proj4" : "2.5.0",
-      "sortablejs" : "1.8.4",
-      "xmldom" : "^0.1.27"
-   },
-   "date" : "24/01/2020",
-   "module" : "src/Itowns/index.js",
-   "license" : "CECILL-B",
-   "bugs" : {},
-   "devDependencies" : {},
-   "peerDependencies" : {},
-   "author" : "IGNF",
    "scripts" : {},
+   "bundleDependencies" : [],
+   "peerDependencies" : {},
    "directories" : {},
-   "description" : "French Geoportal Extensions for iTowns",
-   "name" : "geoportal-extensions-itowns",
-   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
+   "module" : "src/Itowns/index.js",
+   "bugs" : {},
+   "main" : "dist/GpPluginItowns-src.js",
+   "version" : "2.2.6",
+   "date" : "24/01/2020",
+   "license" : "CECILL-B",
    "repository" : {
       "url" : "https://github.com/IGNF/geoportal-extensions.git",
       "type" : "git"
    },
-   "keywords" : [
-      "geoportail",
-      "plugin",
-      "javascript",
-      "Itowns"
-   ]
+   "homepage" : "https://geoservices.ign.fr/documentation/utilisation_web/extension-itowns.html",
+   "description" : "French Geoportal Extensions for iTowns",
+   "devDependencies" : {}
 }
